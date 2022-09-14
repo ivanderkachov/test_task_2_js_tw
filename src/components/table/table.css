@@ -1,0 +1,20 @@
+.table {
+  border-collapse: separate;
+  border-spacing: 0px 10px;
+  width: 80%;
+  text-align: left;
+}
+.table__header {
+  color: white;
+  background-color: #989999
+}
+.table__body {
+  background-color: #e8eaf4;
+  color: #7a7c82
+}
+.table th, td {
+  padding: 2px 20px;
+  margin: 2px;
+  height: 30px;
+  width: 20%;
+}

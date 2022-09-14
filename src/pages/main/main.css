@@ -1,0 +1,11 @@
+.worksheet {
+  margin: 10px;
+}
+.worksheet button {
+  cursor: pointer;
+  color: white;
+  margin: 2px;
+  background-color: #989999;
+  border-radius: 5px;
+  border: 1px solid #989999
+}
