@@ -86,6 +86,12 @@ export default (state = initialState, action) => {
         taskDataArchive: action.newTaskDataArchive,
       };
     }
+    case DELETE_TASK: {
+      return {
+        ...state,
+        taskData: action.newTaskData
+      };
+    }
     default:
       return state;
   }
@@ -135,5 +141,16 @@ export function unarchiveTask(taskId) {
       newTaskData,
       newTaskDataArchive
     })
+  }
+}
+export function deleteTask(taskId) {
+  return (dispatch, getState) => {
+    const { taskData } = getState().reducer
+     const newTaskData = taskData;
+     delete newTaskData[taskId];
+     dispatch({
+       type: DELETE_TASK,
+       newTaskData
+     })
   }
 }

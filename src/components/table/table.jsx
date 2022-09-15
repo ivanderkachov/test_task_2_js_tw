@@ -1,22 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addTaskToArchive, unarchiveTask } from "../../redux/reducers/reducer";
+import { addTaskToArchive, unarchiveTask, deleteTask} from "../../redux/reducers/reducer";
 import './table.css'
 
 const Table = ({ type, table, setToggle, toggle }) => {
   const dispatch = useDispatch()
+  const [editToggle, setEditToggle] = useState(false)
 
   const handleButton = (value, item) => {
     console.log(value, item)
     if (value === 'Archive') {
       dispatch(addTaskToArchive(item))
-      setToggle(!toggle)
     }
     if (value === "Unarchive") {
       dispatch(unarchiveTask(item))
-      setToggle(!toggle)
     }
+    if (value === 'Delete') {
+      dispatch(deleteTask(item))
+    }
+    setToggle(!toggle);
   }
 
   let keysOnly = Object.keys(Object.values(table)[0]).filter((key) => key !== 'id')
@@ -47,8 +50,8 @@ const Table = ({ type, table, setToggle, toggle }) => {
                     } else {
                       return type === "notes" ? (
                         <td className="table__body__buttons" key={`${type}+${task.id}+${key}`}>
-                          <button type="button" name="Edit" onClick={()=>{}}>Edit</button>
-                          <button type="button" name="Delete" onClick={()=>{}}>Delete</button>
+                          <button type="button" name="Edit" onClick={()=>{setEditToggle(!editToggle)}}>Edit</button>
+                          <button type="button" name="Delete" onClick={(e)=>{handleButton(e.target.name, task.id)}}>Delete</button>
                           <button type="button" name="Archive" onClick={(e)=>{handleButton(e.target.name, task.id)}}>Archive</button>
                         </td>
                       ) : (
