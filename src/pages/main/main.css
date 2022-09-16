@@ -1,7 +1,7 @@
 .worksheet {
   margin: 10px;
 }
-.worksheet button {
+ button {
   cursor: pointer;
   color: white;
   margin: 2px;

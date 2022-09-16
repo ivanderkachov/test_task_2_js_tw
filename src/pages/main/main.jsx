@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { summary } from "../../redux/reducers/reducer";
 import Table from "../../components/table/table";
+import Modal from "../../components/modal/modal";
 import './main.css'
 
 const Main = () => {
@@ -17,6 +18,8 @@ const Main = () => {
   const { taskData, taskDataArchive, taskDataSummary } = useSelector((store) => store.reducer)
   const tables= [['notes', taskData], ['archive',taskDataArchive], ['summary',taskDataSummary]]
   return (
+    <>
+    <Modal />
     <div className="worksheet">
       {tables.map((table) => {
         return (
@@ -29,6 +32,7 @@ const Main = () => {
         );
       })}
     </div>
+    </>
   );
 }
 

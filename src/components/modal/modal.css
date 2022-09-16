@@ -1,0 +1,38 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  background: rgba(0,0,0,0.5);
+}
+.modal__form {
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 250px;
+  min-height: 200px;
+}
+.modal__form input {
+  height: 30px;
+}
+/* .modal__form input:invalid {
+  box-shadow: 0 0 0 0 red;
+}
+
+.modal__form input:focus:invalid {
+  box-shadow: none;
+} */
+
+.modal__form textarea {
+  height: 50px;
+}
+.modal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
