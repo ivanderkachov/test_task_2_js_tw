@@ -36,3 +36,9 @@
   justify-content: center;
   align-items: center;
 }
+.modal__form__buttonfield {
+  display: flex;
+  justify-content: center;
+  flex-grow: 0.5;
+  
+}

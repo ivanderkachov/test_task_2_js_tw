@@ -35,34 +35,26 @@ const initialState = {
       Dates: "",
     },
   },
-  taskDataArchive: {
-    // 1662907031392: {
-    //   id: 1662907031392,
-    //   Name: "Shopping list",
-    //   Created: new Date(1662907031392).toLocaleDateString(),
-    //   Category: "Task",
-    //   Content: "Tomatoes, bread",
-    //   Dates: "",
-    // },
-    // 1662907031393: {
-    //   id: 1662907031393,
-    //   Name: "The theory",
-    //   Created: new Date(1662907031393).toLocaleDateString(),
-    //   Category: "Random thoughts",
-    //   Content: "The theory ...",
-    //   Dates: "",
-    // },
-    // 1662907031394: {
-    //   id: 1662907031394,
-    //   Name: "New feature",
-    //   Created: new Date(1662907031394).toLocaleDateString(),
-    //   Category: "Idea",
-    //   Content: "Implement new feature",
-    //   Dates: "",
-    // },
-  },
-  taskDataSummary: ""
+  taskDataArchive: {},
+  taskDataSummary: "",
+  category
 };
+
+function getDates(str) {
+  const cond = /\s|\n/;
+  if (str.length > 0) {
+    const arr = str
+      .split(cond)
+      .map((it) => +new Date(it))
+      .filter((it) => typeof it === "number" && it)
+      .sort()
+      .map((it) => new Date(it).toLocaleDateString())
+      .join(", ");
+    return arr;
+  } else {
+    return "";
+  }
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -86,10 +78,16 @@ export default (state = initialState, action) => {
         taskDataArchive: action.newTaskDataArchive,
       };
     }
-    case DELETE_TASK: {
+    case ADD_TASK: {
       return {
         ...state,
         taskData: action.newTaskData
+      };
+    }
+    case DELETE_TASK: {
+      return {
+        ...state,
+        taskData: action.newTaskData,
       };
     }
     default:
@@ -153,4 +151,15 @@ export function deleteTask(taskId) {
        newTaskData
      })
   }
+}
+export function addTask(task) {
+  return (dispatch, getState) => {
+    const { taskData } = getState().reducer;
+    task.Dates = getDates(task.Content)
+    const newTaskData = { ...taskData, [task.id]: task}
+    dispatch({
+      type: ADD_TASK,
+      newTaskData,
+    });
+  };
 }
