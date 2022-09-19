@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 const ADD_TASK_TO_ARCHIVE = "ADD_TASK_TO_ARCHIVE";
 const UNARCHIVE_TASK = "UNARCHIVE_TASK";
 const DELETE_TASK = "DELETE_TASK";
@@ -56,38 +54,44 @@ function getDates(str) {
   }
 }
 
+function sortData(data) {
+  return Object.keys(data).sort((a, b) => b - a).reduce((acc,rec) => {
+    return { ...acc, [rec]: data[rec] }
+  },{})
+}
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case SUMMARY: {
       return {
         ...state,
-        taskDataSummary: action.taskDataSummary,
+        taskDataSummary: sortData(action.taskDataSummary),
       };
     }
     case ADD_TASK_TO_ARCHIVE: {
       return {
         ...state,
-        taskData: action.newTaskData,
-        taskDataArchive: action.newTaskDataArchive,
+        taskData: sortData(action.newTaskData),
+        taskDataArchive: sortData(action.newTaskDataArchive),
       };
     }
     case UNARCHIVE_TASK: {
       return {
         ...state,
-        taskData: action.newTaskData,
-        taskDataArchive: action.newTaskDataArchive,
+        taskData: sortData(action.newTaskData),
+        taskDataArchive: sortData(action.newTaskDataArchive),
       };
     }
     case ADD_TASK: {
       return {
         ...state,
-        taskData: action.newTaskData
+        taskData: sortData(action.newTaskData)
       };
     }
     case DELETE_TASK: {
       return {
         ...state,
-        taskData: action.newTaskData,
+        taskData: sortData(action.newTaskData),
       };
     }
     default:
@@ -149,7 +153,7 @@ export function deleteTask(taskId) {
      dispatch({
        type: DELETE_TASK,
        newTaskData
-     })
+     });
   }
 }
 export function addTask(task) {
@@ -159,7 +163,7 @@ export function addTask(task) {
     const newTaskData = { ...taskData, [task.id]: task}
     dispatch({
       type: ADD_TASK,
-      newTaskData,
+      newTaskData
     });
   };
 }

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 
 import { addTaskToArchive, unarchiveTask, deleteTask} from "../../redux/reducers/reducer";
 import './table.css'
@@ -67,7 +67,7 @@ const Table = ({ type, table, setToggle, toggle, changeTable, setChangeTable }) 
             })}
         </tbody>
       </table>
-      {type='notes'&& <div className="tableAddButton"><button name="Add" onClick={() => {setChangeTable('adding')}}>Add</button></div>}
+      {type==='notes'&& <div className="tableAddButton"><button name="Add" onClick={() => {setChangeTable('adding')}}> + Add task</button></div>}
     </div>
   );
 }
