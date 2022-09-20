@@ -47,7 +47,7 @@ const Table = ({ type, table, setToggle, toggle, changeTable, setChangeTable }) 
                 <tr key={type!=='summary' ? `${type}+${task.id}`: `${type} table ${index}`}>
                   {keysOnly.map((key) => {
                     if (key !== 'Actions') {
-                      return <td key={`${type}+${task.id}+${key}`}>{task[key]}</td>;
+                      return <td className={`table__body__${key}`} key={`${type}+${task.id}+${key}`}>{task[key]}</td>;
                     } else {
                       return type === "notes" ? (
                         <td className="table__body__buttons" key={`${type}+${task.id}+${key}`}>

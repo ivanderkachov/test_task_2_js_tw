@@ -16,7 +16,14 @@
   padding: 2px 20px;
   margin: 2px;
   height: 30px;
-  width: 20%;
+  width: 200px;
+}
+.table__body__Content {
+  display: inline-flex;
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .tableAddButton {
   display: flex;
