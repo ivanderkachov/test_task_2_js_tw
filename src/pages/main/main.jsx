@@ -47,13 +47,13 @@ const Main = () => {
               />
             </div>
           ) : (
-            <>
+            <div key={`${table[0]} field`}>
             <div className="nodata" key={`${table[0]} nodata`}>No Data in {table[0]}</div>
              {table[0]==='notes'&&
               <div key={`${table[0]} buttondiv`} className="tableAddButton">
                <button key={`${table[0]} button`} name="Add" onClick={() => {setChangeTable('adding')}}> + Add task</button>
                </div>}
-            </>
+            </div>
           );
         })}
       </div>
