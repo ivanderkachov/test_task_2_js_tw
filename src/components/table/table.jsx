@@ -31,33 +31,33 @@ const Table = ({ type, table, setToggle, toggle, changeTable, setChangeTable }) 
 
   return (
     <div>
-      <table className="table">
-        <thead className="table__header">
+      <table className="border-separate border-spacing-y-2 w-10/12 text-left">
+        <thead className="text-white bg-slate-400">
           <tr>
             {keysOnly.map((key) => {
               return (
-                  <th key={`${type}+${key}`}>{key}</th>
+                  <th className="px-2 py-5 m-2 h-30 w-20" key={`${type}+${key}`}>{key}</th>
               );
             })}
           </tr>
         </thead>
-        <tbody className="table__body">
+        <tbody className="bg-slate-300">
             {Object.values(table).map((task, index) => {
               return (
                 <tr key={type!=='summary' ? `${type}+${task.id}`: `${type} table ${index}`}>
                   {keysOnly.map((key) => {
                     if (key !== 'Actions') {
-                      return <td className={`table__body__${key}`} key={`${type}+${task.id}+${key}`}>{task[key]}</td>;
+                      return <td className="px-2 py-5 m-2 h-30 w-20 text-gray-500" key={`${type}+${task.id}+${key}`}>{task[key]}</td>;
                     } else {
                       return type === "notes" ? (
-                        <td className="table__body__buttons" key={`${type}+${task.id}+${key}`}>
-                          <button type="button" name="Edit" onClick={(e)=>{handleButton(e.target.name, task.id)}}>Edit</button>
-                          <button type="button" name="Delete" onClick={(e)=>{handleButton(e.target.name, task.id)}}>Delete</button>
-                          <button type="button" name="Archive" onClick={(e)=>{handleButton(e.target.name, task.id)}}>Archive</button>
+                        <td className="px-2 py-5 m-2 h-30 w-20" key={`${type}+${task.id}+${key}`}>
+                          <button type="button" className="cursor-pointer items-center m-2 px-6 py-2 text-white transition bg-slate-400 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-slate-500 hover:bg-slate-500" name="Edit" onClick={(e)=>{handleButton(e.target.name, task.id)}}>Edit</button>
+                          <button type="button" className="cursor-pointer items-center m-2 px-6 py-2 text-white transition bg-slate-400 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-slate-500 hover:bg-slate-500" name="Delete" onClick={(e)=>{handleButton(e.target.name, task.id)}}>Delete</button>
+                          <button type="button" className="cursor-pointer items-center m-2 px-6 py-2 text-white transition bg-slate-400 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-slate-500 hover:bg-slate-500" name="Archive" onClick={(e)=>{handleButton(e.target.name, task.id)}}>Archive</button>
                         </td>
                       ) : (
-                        <td key={`${type}+${task.id}+${key}`}>
-                          <button type="button" name="Unarchive" onClick={(e)=>{handleButton(e.target.name, task.id)}}>Unarchive</button>
+                        <td className="px-2 py-5 m-2 h-30 w-20" key={`${type}+${task.id}+${key}`}>
+                          <button type="button" className="cursor-pointer text-white m-2 p-3 bg-slate-400 rounded border-solid" name="Unarchive" onClick={(e)=>{handleButton(e.target.name, task.id)}}>Unarchive</button>
                         </td>
                       );
                     }
@@ -67,7 +67,7 @@ const Table = ({ type, table, setToggle, toggle, changeTable, setChangeTable }) 
             })}
         </tbody>
       </table>
-      {type==='notes'&& <div className="tableAddButton"><button name="Add" onClick={() => {setChangeTable('adding')}}> + Add task</button></div>}
+      {type==='notes'&& <div className="flex w-10/12 justify-end"><button className="cursor-pointer items-center m-2 px-6 py-2 text-white transition bg-slate-400 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-slate-500 hover:bg-slate-500" name="Add" onClick={() => {setChangeTable('adding')}}> + Add task</button></div>}
     </div>
   );
 }

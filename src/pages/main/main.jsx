@@ -33,7 +33,7 @@ const Main = () => {
         toggle={toggle}
         setToggle={setToggle}
       />
-      <div className="worksheet">
+      <div className="m-10">
         {tables.map((table) => {
           return Object.keys(table[1]).length > 0 ? (
             <div key={table[0]}>
@@ -48,10 +48,10 @@ const Main = () => {
             </div>
           ) : (
             <div key={`${table[0]} field`}>
-            <div className="nodata" key={`${table[0]} nodata`}>No Data in {table[0]}</div>
+            <div className="w-10/12 text-white bg-slate-400 mt-5 font-bold"    key={`${table[0]} nodata`}>No Data in {table[0]}</div>
              {table[0]==='notes'&&
               <div key={`${table[0]} buttondiv`} className="tableAddButton">
-               <button key={`${table[0]} button`} name="Add" onClick={() => {setChangeTable('adding')}}> + Add task</button>
+               <button className="cursor-pointer items-center m-2 px-6 py-2 text-white transition bg-slate-400 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-slate-500 hover:bg-slate-500" key={`${table[0]} button`} name="Add" onClick={() => {setChangeTable('adding')}}> + Add task</button>
                </div>}
             </div>
           );

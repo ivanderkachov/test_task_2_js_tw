@@ -31,19 +31,19 @@ const Modal = ({ taskData, category, changeTable, setChangeTable, toggle, setTog
   }
   return (
     <div className={(changeTable === '' ? "modal" : "modal active")}>
-        <div className="modal__form">
-          <input placeholder="Name" name="Name" maxlength="20" value={task.Name} onChange={(e) => {handleChange(e)}} className="modal__form__input" />
-          <select name="Category" value={task.Category} onChange={(e) => {handleChange(e)}}>
+        <div className="p-6 bg-white rounded-lg flex flex-col justify-between min-w-150 min-h-125">
+          <input className="m-1 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Name" name="Name" maxlength="20" value={task.Name} onChange={(e) => {handleChange(e)}} />
+          <select className="m-1 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" name="Category" value={task.Category} onChange={(e) => {handleChange(e)}}>
             {category.map((cat)=>{
               return (
                 <option key={cat} name={cat} >{cat}</option>
               )
             })}
           </select>
-          <textarea name="Content" placeholder="Content" value={task.Content} className="modal__form__input" onChange={(e) => {handleChange(e)}}/>
-          <div className="modal__form__buttonfield">
-            <button type="button" onClick={(e) => {handleSubmit(e, task)}}>{changeTable !== '' && changeTable !== 'adding' ? "Save" : "Add"}</button>
-            <button type="button" onClick={()=>{setChangeTable('')}} >Close</button>
+          <textarea name="Content" placeholder="Content" value={task.Content} className="m-1 bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" onChange={(e) => {handleChange(e)}}/>
+          <div className="flex justify-around ">
+            <button type="button" className="cursor-pointer items-center m-2 px-6 py-2 text-white transition bg-slate-400 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-slate-500 hover:bg-slate-500" onClick={(e) => {handleSubmit(e, task)}}>{changeTable !== '' && changeTable !== 'adding' ? "Save" : "Add"}</button>
+            <button type="button" className="cursor-pointer items-center m-2 px-6 py-2 text-white transition bg-slate-400 rounded-lg shadow-lg focus:outline-none focus:ring focus:ring-slate-500 hover:bg-slate-500" onClick={()=>{setChangeTable('')}} >Close</button>
           </div>
         </div>
     </div>
